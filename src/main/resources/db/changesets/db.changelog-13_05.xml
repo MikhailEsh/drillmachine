@@ -1,0 +1,49 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+  <changeSet id="PILOT-updateReferences" author="PK">
+    <sql>
+      CREATE TABLE tender_generic (
+      id UUID NOT NULL,
+      id_external varchar(255),
+      title string,
+      id_counterparty UUID NOT NULL,
+      start_price numeric(19, 2),
+      region_name  varchar(255),
+      offer_count int,
+      begin_date TIMESTAMP,
+      end_date TIMESTAMP,
+      trade_type int,
+      federal_law_name varchar(255),
+      created_at TIMESTAMP NOT NULL,
+      updated_at TIMESTAMP NOT NULL
+      );
+
+      create table tender_in_day(
+      id UUID NOT NULL,
+      last_bet_num int
+      );
+
+      CREATE TABLE counterparty (
+      id UUID NOT NULL,
+      inn varchar(255),
+      name string
+      );
+
+      create table tender_generic_good(
+      id UUID NOT NULL,
+      id_tender UUID NOT NULL,
+      id_good UUID NOT null
+      );
+
+      CREATE TABLE good (
+      id UUID NOT NULL,
+      okpd_code varchar(255),
+      kpgz_code varchar(255)
+      );
+    </sql>
+  </changeSet>
+
+</databaseChangeLog>
